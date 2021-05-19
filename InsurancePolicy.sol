@@ -47,7 +47,7 @@ contract InsurancePolicy is owned, usingProvable {
     
     function updateClaimDetectionURL(string memory _APILink) public onlyPool() returns (bool){
         APILink= _APILink;
-        update();
+        update(_APILink);
         return true;
     }
     
@@ -77,10 +77,10 @@ contract InsurancePolicy is owned, usingProvable {
         createClaim();
     }
     
-    //_APILink= https://www.fueleconomy.gov/ws/rest/fuelprices
-    function update() payable public {
-        emit newProvableQuery("Provable query was sent, standing by for the answer..");
-        string memory url= string(abi.encodePacked("xml(", APILink, ").fuelPrices.diesel"));
+    
+    function update(string memory _APILink) payable public {
+        emit newProvableQuery("Provable query was sent, standing by for the answer...");
+        string memory url= string(abi.encodePacked(_APILink));
         provable_query("URL", url);
     }
 }

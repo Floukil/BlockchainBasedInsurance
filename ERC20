@@ -1,0 +1,10 @@
+pragma solidity 0.5.0;
+
+contract ERC20 {
+    function getBalanceOf(address who) public returns (uint value);
+    function transfer(address to, uint value) public returns (bool ok);
+    function transferFrom(address from, address to, uint value) public returns (bool ok);
+    
+    event Transfer(address from, address to, uint value);
+    event Approval(address owner, address spender, uint value);
+}
